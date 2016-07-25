@@ -1,5 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 
 public class Calculadora implements I_Calculadora {
 
@@ -42,16 +41,13 @@ public class Calculadora implements I_Calculadora {
 	public String LeerArchivo(String direccion) {
 		// TODO Auto-generated method stub
 		String operacion = "";
-		
 		try{
-			//FileReader fr = new FileReader(direccion);
 			BufferedReader bf = new BufferedReader(new FileReader(direccion));
-			String x ="";
 			String cadena;
 			while ((cadena = bf.readLine()) != null){
-				x = x + cadena;
+				operacion = operacion + cadena;
+				System.out.println(operacion);
 			}
-		operacion = x;
 		}
 		catch(Exception e){
 			System.out.println("NA");
