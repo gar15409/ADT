@@ -4,19 +4,19 @@ import java.util.Random;
 
 public class Escribir {
 	
-	
-	public static void main(String []args)
-	{
+		/*
+		for(int i = 0; i<10; i++){
 		  Random rnd = new Random();
-		  rnd.nextInt();
-
+		  int x = (int)(rnd.nextDouble());
+		}
+		
 	//Un texto cualquiera guardado en una variable
-	String saludo="Hola hugo  1 6 5 1 5 4 6 8 4 8";
+	String saludo="8 4 8";
 
 	try
 	{
 	//Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-	File archivo=new File("texto.txt");
+	File archivo=new File("texto2.txt");
 
 	//Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
 	FileWriter escribir=new FileWriter(archivo,true);
@@ -33,7 +33,6 @@ public class Escribir {
 	{
 	System.out.println("Error al escribir");
 	}
-	}
-	
+	*/
 	
 }
