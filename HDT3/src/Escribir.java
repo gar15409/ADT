@@ -11,7 +11,7 @@ public class Escribir {
 		  rnd.nextInt();
 
 	//Un texto cualquiera guardado en una variable
-	String saludo="Hola hugo gaytored 1 6 5 1 5 4 6 8 4 8";
+	String saludo="Hola hugo  1 6 5 1 5 4 6 8 4 8";
 
 	try
 	{
