@@ -5,12 +5,16 @@ public class main {
 	{
 		LeerEscribir le = new LeerEscribir();
 		
+		MergeSort ms = new MergeSort();
+		InsertionSort is = new InsertionSort();
+		SelectionSort ss = new SelectionSort();
+		
+		
 		le.Escribir();
 		
-		le.Convertir(le.LeerArchivo("C:\\Users\\usuario1\\git\\HDT3\\texto.txt"));
+		le.Convertir(le.LeerArchivo("C:\\Users\\usuario1\\git\\HDT3\\src\\texto.txt"));
 		
-		System.out.println("EEEA");
-		System.out.println(le.Convertir(le.LeerArchivo("C:\\Users\\usuario1\\git\\HDT3\\texto.txt")));
+		ms.mergeSort(le.Convertir(le.LeerArchivo("C:\\Users\\usuario1\\git\\HDT3\\src\\texto.txt")));
 		
 	}
 	
