@@ -52,18 +52,18 @@ public class SinglyLinkedList<E> extends ListaAbstracta<E>
 	@Override
 	public void addLast(E value) {
 		// post: adds value to end of list
-		Node<E> newNode = new Node<E>(value, null); //creates the new node
+		Node<E> temp = new Node<E>(value,null);
 		if (head != null){
 			Node<E> finger = head;
-			while (finger.next() != null){
+			while(finger.next() != null){
 				finger = finger.next();
 			}
-			finger.setNext(newNode);
+			finger.setNext(temp);
 		}
-		else
-			head = newNode;
+		else{
+			head = temp;
+		}
 		count++;
-		
 	}
 
 	@Override
@@ -102,7 +102,20 @@ public class SinglyLinkedList<E> extends ListaAbstracta<E>
 	@Override
 	public E removeLast() {
 		// TODO Auto-generated method stub
-		return null;
+		Node<E> finger = head;
+		Node<E> previous = null;
+		while(finger.next() != null){
+			previous = finger;
+			finger = finger.next();
+			}
+		if(previous == null){
+			head = null;
+		}
+		else{
+			previous.setNext(null);
+		}
+		count--;
+		return finger.value();
 	}
 
 	@Override
