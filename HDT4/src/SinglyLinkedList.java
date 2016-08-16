@@ -8,7 +8,7 @@ import java.util.Iterator;
  * Implementa una lista enlazada
  * 
  */
-public class SinglyLinkedList<E> extends A_List<E>
+public class SinglyLinkedList<E> extends ListaAbstracta<E>
 {
 	protected int count; // list size
 	protected Node<E> head; // ref. to first element

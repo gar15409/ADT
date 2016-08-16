@@ -1,22 +1,14 @@
 import java.util.Iterator;
 
-/**
- * @author Julio
- *
- * @param <E>
- */
-public class DoublyLinkedList<E> extends ListaAbstracta<E> {
+public class Circular<E> extends ListaAbstracta<E>  {
 	
-
-	protected DoubleNode<E> head;
-	protected DoubleNode<E> tail;
+	protected Node<E> tail;
 
 	/**
-	 * Instantiates a new doblemente enlazada.
+	 * Instantiates a new circular.
 	 */
-	public DoublyLinkedList() {
+	public Circular() {
 		// TODO Auto-generated constructor stub
-		head = null;
 		tail = null;
 		contador = 0;
 	}
@@ -28,12 +20,16 @@ public class DoublyLinkedList<E> extends ListaAbstracta<E> {
 	@Override
 	public void addFirst(E value) {
 		// TODO Auto-generated method stub
-		head = new DoubleNode<E>(value,head,null);	
-		
-		if (tail == null){
-			tail = head;
+		Node<E> temp = new Node<E>(value);
+		if(tail == null){
+			tail = temp;
+			tail.setNext(tail);
 		}
-		contador ++;
+		else{
+			temp.setNext(tail.next());
+			tail.setNext(temp);
+		}
+		contador++;
 	}
 
 
@@ -43,8 +39,15 @@ public class DoublyLinkedList<E> extends ListaAbstracta<E> {
 	@Override
 	public E removeFirst() {
 		// TODO Auto-generated method stub
-		DoubleNode<E> temp = head;
-		head = head.next();
+		Node<E> temp = null;
+		if( tail == tail.next()){
+			temp = tail.next();
+			tail = null;
+		}
+		else if (tail != tail.next()){
+			temp = tail.next();
+			tail.setNext(tail.next().next());
+		}
 		contador--;
 		return temp.value();
 	}
@@ -56,13 +59,17 @@ public class DoublyLinkedList<E> extends ListaAbstracta<E> {
 	@Override
 	public E removeLast() {
 		// TODO Auto-generated method stub
-		DoubleNode<E> temp = tail;
-		tail = tail.previous();
-		if(tail == null){
-			head = null;
+		Node<E> finger = tail;
+		while(finger.next() != tail){
+			finger = finger.next();
+		}
+		Node<E> temp = tail;
+		if (finger == tail){
+			tail = null;
 		}
 		else{
-			tail.setNext(null);
+			finger.setNext(tail.next());
+			tail = finger;
 		}
 		contador--;
 		return temp.value();
@@ -75,14 +82,8 @@ public class DoublyLinkedList<E> extends ListaAbstracta<E> {
 	@Override
 	public void addLast(E value) {
 		// TODO Auto-generated method stub
-		
-		tail = new DoubleNode<E>(value,null,tail);
-		
-		if(head == null){
-			head = tail;
-		}
-		contador++;
-		
+		addFirst(value);
+		tail = tail.next();
 	}
 
 
@@ -92,9 +93,8 @@ public class DoublyLinkedList<E> extends ListaAbstracta<E> {
 	@Override
 	public E getFirst() {
 		// TODO Auto-generated method stub
-		return head.value();
+		return tail.next().value();
 	}
-
 
 	/**
 	 * @see InterfazLista#getLast()
@@ -112,7 +112,7 @@ public class DoublyLinkedList<E> extends ListaAbstracta<E> {
 	@Override
 	public boolean contains(E value) {
 		// TODO Auto-generated method stub
-		DoubleNode<E> finger = head;
+		Node<E> finger = tail;
 		while(finger != null && !finger.value().equals(value)){
 			finger.next();
 		}
@@ -209,5 +209,7 @@ public class DoublyLinkedList<E> extends ListaAbstracta<E> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

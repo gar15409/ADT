@@ -1,47 +1,65 @@
 /**
- * 
- */
-
-/**
- * @author flaquitqm
+ * @author Pablo Ortiz, Pedro Garcia
  *
+ * @param <E>
  */
-public class DoubleNode<E> extends Node<E> {
-
-	private DoubleNode<E> prevElement;
-	
-	
-	/**
-	 * @param value: el valor del nodo
-	 */
-	public DoubleNode(E value) {
-		super(value);
-		prevElement = null;
-	} 
+public class DoubleNode <E>{
+	protected E data; 
+	protected DoubleNode<E> nextElement; 
+	protected DoubleNode<E> previousElement;
 	
 	/**
-	 * @param value: el valor del nodo
-	 * @param next: el enlace al próximo nodo
-	 * @param prev: el enlace al nodo anterior
+	 * @param v
+	 * @param next
+	 * @param previous
 	 */
-	public DoubleNode(E value, DoubleNode<E> next, DoubleNode<E>prev){
-		super(value, next);
-		prevElement = prev;
+	public DoubleNode(E v, DoubleNode<E> next, DoubleNode<E> previous) { 
+		data = v; 
+		nextElement = next; 
+		previousElement = previous;
+		if (nextElement != null){ 
+			nextElement.previousElement = this; 
+			previousElement = previous;
+		}
+		if (previousElement != null) {
+			previousElement.nextElement = this;
+		}
+	}
+	/**
+	 * @param v
+	 */
+	public DoubleNode(E v){  
+		// post: constructs a single element 
+		this(v,null,null);
+	}
+	/**
+	 * @return
+	 */
+	public DoubleNode<E> next() {
+		// TODO Auto-generated method stub
+		return nextElement;
+	}
+	/**
+	 * @return
+	 */
+	public E value() {
+		// TODO Auto-generated method stub
+		return data;
+	}
+	/**
+	 * @return
+	 */
+	public DoubleNode<E> previous() {
+		// TODO Auto-generated method stub
+		return previousElement;
 	}
 	
 	/**
-	 * @return el elemento anterior
+	 * @param next
 	 */
-	public DoubleNode<E> getPrevElemenet() {
-		return prevElement;
-	}
-
-	
-	/**
-	 * @param prevElemenet: Agrega el elemento siguiente.
-	 */
-	public void setPrevElemenet(DoubleNode<E> prevElemenet) {
-		this.prevElement = prevElemenet;
+	public void setNext(DoubleNode<E> next) {
+	// post: sets reference to new next value  
+		nextElement = next; 
 	}
 
 }
